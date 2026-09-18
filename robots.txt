@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rudrapratapparida9-byte.github.io/fincalc-pro/sitemap.xml

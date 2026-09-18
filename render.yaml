@@ -5,10 +5,6 @@ services:
     buildCommand: ""
     staticPublishPath: .
     pullRequestPreviewsEnabled: true
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
     headers:
       - path: /*
         name: Access-Control-Allow-Origin

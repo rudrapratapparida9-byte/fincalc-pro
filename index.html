@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>FinCalcPro – Free High-Precision Financial, Loan &amp; Investment Calculators</title>
+
+  <!-- SEO & Social Tags -->
+  <meta name="description" content="Free online financial calculators: Mortgage EMI, SIP Wealth Compounding, FIRE Retirement Planner, Freelance Tax, Auto Loans, and Trading ROI with real-time charts.">
+  <meta name="keywords" content="financial calculator, mortgage emi calculator, sip calculator, compound interest calculator, fire retirement planner, freelance tax calculator, trading roi calculator, fincalc pro">
+  <meta name="author" content="FinCalcPro">
+  <meta name="theme-color" content="#4f46e5">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FinCalcPro – Master Your Wealth with Precision Financial Tools">
+  <meta property="og:description" content="Interactive calculators for loans, investments, compound wealth, early retirement, and tax planning. Real-time amortization and visual charts.">
+  <meta property="og:image" content="icons/icon-512.svg">
+
+  <link rel="icon" type="image/svg+xml" href="icons/icon-512.svg">
+  <link rel="apple-touch-icon" href="icons/icon-512.svg">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js for Financial Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Google AdSense Auto Ads Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6931746397574530" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <a href="index.html" class="brand-link">
+          <div class="brand-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div>
+            <h1 class="brand-title">FinCalc<span class="brand-accent">Pro</span></h1>
+            <span class="brand-tagline">SMART FINANCIAL SUITE</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-tabs">
+        <button type="button" class="tab-btn active" data-tab="mortgage">
+          <i class="fa-solid fa-house"></i> <span>Mortgage / Loan</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="sip">
+          <i class="fa-solid fa-seedling"></i> <span>SIP &amp; Wealth</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="retirement">
+          <i class="fa-solid fa-hourglass-half"></i> <span>Retirement</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="tax">
+          <i class="fa-solid fa-receipt"></i> <span>Tax &amp; Freelance</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="trading">
+          <i class="fa-solid fa-arrow-trend-up"></i> <span>Trading ROI</span>
+        </button>
+      </nav>
+
+      <!-- Header Controls -->
+      <div class="header-controls">
+        <div class="currency-picker">
+          <select id="currencySelect" class="currency-select" aria-label="Select Currency">
+            <option value="INR" data-symbol="₹">INR (₹)</option>
+            <option value="USD" data-symbol="$" selected>USD ($)</option>
+            <option value="EUR" data-symbol="€">EUR (€)</option>
+            <option value="GBP" data-symbol="£">GBP (£)</option>
+            <option value="AED" data-symbol="د.إ">AED (د.إ)</option>
+            <option value="CAD" data-symbol="C$">CAD (C$)</option>
+            <option value="AUD" data-symbol="A$">AUD (A$)</option>
+          </select>
+          <i class="fa-solid fa-coins currency-icon"></i>
+        </div>
+
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle Theme" title="Toggle Dark/Light Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-badge">
+        <i class="fa-solid fa-shield-halved"></i> 100% CLIENT-SIDE PRIVACY &bull; HIGH ACCURACY FORMULAS
+      </div>
+      <h2 class="hero-title">Master Your Wealth with <span class="gradient-text">Precision Financial Tools</span></h2>
+      <p class="hero-subtitle">
+        Interactive calculators for loans, investments, compound wealth, early retirement, and tax planning. Real-time amortization and visual charts.
+      </p>
+
+      <div class="quick-jump-row">
+        <span class="quick-jump-label">Quick Jump:</span>
+        <button type="button" class="jump-pill" data-target="mortgage">Mortgage EMI</button>
+        <button type="button" class="jump-pill" data-target="sip">SIP Compound</button>
+        <button type="button" class="jump-pill" data-target="retirement">FIRE Retirement</button>
+        <button type="button" class="jump-pill" data-target="tax">Freelance Tax</button>
+        <button type="button" class="jump-pill" data-target="mortgage" data-preset="auto">Auto Loan</button>
+        <button type="button" class="jump-pill" data-target="trading">Stock / Crypto ROI</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Ad Slot Container (Google AdSense Ready) -->
+  <div class="ad-container-wrap">
+    <div class="ad-slot-card">
+      <span class="ad-slot-tag">ADVERTISEMENT</span>
+      <div class="ad-slot-inner">
+        <!-- Google AdSense Responsive Unit -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6931746397574530"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Calculator Panels Container -->
+  <main class="main-content">
+
+    <!-- 1. Mortgage & Loan Calculator -->
+    <section id="panel-mortgage" class="calc-panel active">
+      <div class="panel-grid">
+        <!-- Inputs Card -->
+        <div class="card form-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-house-chimney"></i> Mortgage &amp; Loan Parameters</h3>
+            <span class="calc-type-badge">EMI &bull; Amortization</span>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="loanAmount">Home / Loan Amount (<span class="curr-sym">$</span>)</label>
+              <span id="loanAmountVal" class="val-display">300,000</span>
+            </div>
+            <input type="range" id="loanAmountSlider" min="10000" max="2000000" step="5000" value="300000" class="custom-slider">
+            <input type="number" id="loanAmount" value="300000" min="1000" class="form-input">
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="interestRate">Annual Interest Rate (%)</label>
+              <span id="interestRateVal" class="val-display">6.5%</span>
+            </div>
+            <input type="range" id="interestRateSlider" min="1" max="20" step="0.1" value="6.5" class="custom-slider">
+            <input type="number" id="interestRate" value="6.5" min="0.1" max="30" step="0.1" class="form-input">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="loanTerm">Loan Term (Years)</label>
+              <select id="loanTerm" class="form-select">
+                <option value="30" selected>30 Years (360 Mos)</option>
+                <option value="25">25 Years (300 Mos)</option>
+                <option value="20">20 Years (240 Mos)</option>
+                <option value="15">15 Years (180 Mos)</option>
+                <option value="10">10 Years (120 Mos)</option>
+                <option value="5">5 Years (Auto / Personal)</option>
+                <option value="3">3 Years (Short Term)</option>
+              </select>
+            </div>
+            <div class="form-group flex-1">
+              <label for="extraPayment">Extra Monthly Payment (<span class="curr-sym">$</span>)</label>
+              <input type="number" id="extraPayment" value="0" min="0" placeholder="0" class="form-input">
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Card -->
+        <div class="card results-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-calculator"></i> Payment Summary</h3>
+            <span class="status-live"><i class="fa-solid fa-circle"></i> Live Computed</span>
+          </div>
+
+          <div class="big-metric-card">
+            <span class="metric-label">MONTHLY PAYMENT (EMI)</span>
+            <span id="monthlyPaymentDisplay" class="metric-big-val"><span class="curr-sym">$</span>1,896.20</span>
+            <span id="termDurationSub" class="metric-sub">Over 30 Years</span>
+          </div>
+
+          <div class="summary-stats-grid">
+            <div class="stat-box">
+              <span class="stat-label">Principal Amount</span>
+              <span id="principalDisplay" class="stat-val"><span class="curr-sym">$</span>300,000</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Total Interest Paid</span>
+              <span id="totalInterestDisplay" class="stat-val text-accent"><span class="curr-sym">$</span>382,633</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Total Payment</span>
+              <span id="totalPaymentDisplay" class="stat-val"><span class="curr-sym">$</span>682,633</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Interest-to-Principal Ratio</span>
+              <span id="interestRatioDisplay" class="stat-val text-highlight">127.5%</span>
+            </div>
+          </div>
+
+          <!-- Chart Breakdown -->
+          <div class="chart-wrapper">
+            <canvas id="mortgageChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SIP & Wealth Compounding Calculator -->
+    <section id="panel-sip" class="calc-panel">
+      <div class="panel-grid">
+        <div class="card form-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-coins"></i> SIP &amp; Investment Parameters</h3>
+            <span class="calc-type-badge">Compound Growth</span>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="sipMonthly">Monthly Investment (<span class="curr-sym">$</span>)</label>
+              <span id="sipMonthlyVal" class="val-display">500</span>
+            </div>
+            <input type="range" id="sipMonthlySlider" min="50" max="10000" step="50" value="500" class="custom-slider">
+            <input type="number" id="sipMonthly" value="500" min="10" class="form-input">
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="sipRate">Expected Annual Return Rate (%)</label>
+              <span id="sipRateVal" class="val-display">12%</span>
+            </div>
+            <input type="range" id="sipRateSlider" min="1" max="30" step="0.5" value="12" class="custom-slider">
+            <input type="number" id="sipRate" value="12" min="0.5" max="50" step="0.1" class="form-input">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <div class="label-row">
+                <label for="sipYears">Time Period (Years)</label>
+                <span id="sipYearsVal" class="val-display">15 Yrs</span>
+              </div>
+              <input type="range" id="sipYearsSlider" min="1" max="40" value="15" class="custom-slider">
+              <input type="number" id="sipYears" value="15" min="1" max="50" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label for="sipStepUp">Annual Step-Up SIP (%)</label>
+              <input type="number" id="sipStepUp" value="10" min="0" max="50" placeholder="0" class="form-input">
+            </div>
+          </div>
+        </div>
+
+        <div class="card results-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-chart-pie"></i> Projected Wealth</h3>
+            <span class="status-live"><i class="fa-solid fa-circle"></i> Live Computed</span>
+          </div>
+
+          <div class="big-metric-card green-accent">
+            <span class="metric-label">TOTAL PROJECTED WEALTH</span>
+            <span id="sipTotalValueDisplay" class="metric-big-val text-success"><span class="curr-sym">$</span>385,860</span>
+            <span id="sipMultiplierSub" class="metric-sub">Compounded over 15 Years</span>
+          </div>
+
+          <div class="summary-stats-grid">
+            <div class="stat-box">
+              <span class="stat-label">Total Amount Invested</span>
+              <span id="sipInvestedDisplay" class="stat-val"><span class="curr-sym">$</span>90,000</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Estimated Wealth Gain</span>
+              <span id="sipGainsDisplay" class="stat-val text-success"><span class="curr-sym">$</span>295,860</span>
+            </div>
+          </div>
+
+          <div class="chart-wrapper">
+            <canvas id="sipChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FIRE Retirement Planner -->
+    <section id="panel-retirement" class="calc-panel">
+      <div class="panel-grid">
+        <div class="card form-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-umbrella-beach"></i> Early Retirement (F.I.R.E.)</h3>
+            <span class="calc-type-badge">Freedom Target</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="currentAge">Current Age</label>
+              <input type="number" id="currentAge" value="28" min="18" max="75" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label for="retireAge">Target Retirement Age</label>
+              <input type="number" id="retireAge" value="50" min="25" max="80" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="monthlyExpense">Current Monthly Expenses (<span class="curr-sym">$</span>)</label>
+            <input type="number" id="monthlyExpense" value="3000" min="500" class="form-input">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="inflationRate">Expected Inflation (%)</label>
+              <input type="number" id="inflationRate" value="6.0" min="1" max="15" step="0.1" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label for="swrRate">Safe Withdrawal Rate (SWR %)</label>
+              <input type="number" id="swrRate" value="4.0" min="2.5" max="6" step="0.1" class="form-input">
+            </div>
+          </div>
+        </div>
+
+        <div class="card results-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-bullseye"></i> Target Corpus Required</h3>
+            <span class="status-live"><i class="fa-solid fa-circle"></i> Live Computed</span>
+          </div>
+
+          <div class="big-metric-card purple-accent">
+            <span class="metric-label">REQUIRED RETIREMENT CORPUS</span>
+            <span id="fireCorpusDisplay" class="metric-big-val"><span class="curr-sym">$</span>3,243,000</span>
+            <span id="fireYearsSub" class="metric-sub">In 22 Years (Adjusted for Inflation)</span>
+          </div>
+
+          <div class="summary-stats-grid">
+            <div class="stat-box">
+              <span class="stat-label">Monthly Expense at Retirement</span>
+              <span id="retireExpenseDisplay" class="stat-val"><span class="curr-sym">$</span>10,810</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Monthly Savings Required</span>
+              <span id="monthlySavingsNeeded" class="stat-val text-success"><span class="curr-sym">$</span>2,450</span>
+            </div>
+          </div>
+
+          <div class="chart-wrapper">
+            <canvas id="retirementChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Tax & Freelance Calculator -->
+    <section id="panel-tax" class="calc-panel">
+      <div class="panel-grid">
+        <div class="card form-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-file-invoice-dollar"></i> Freelance &amp; Income Tax</h3>
+            <span class="calc-type-badge">Net In-Hand</span>
+          </div>
+
+          <div class="form-group">
+            <label for="annualRevenue">Annual Gross Revenue / Salary (<span class="curr-sym">$</span>)</label>
+            <input type="number" id="annualRevenue" value="85000" min="1000" class="form-input">
+          </div>
+
+          <div class="form-group">
+            <label for="deductions">Deductions &amp; Business Expenses (<span class="curr-sym">$</span>)</label>
+            <input type="number" id="deductions" value="12000" min="0" class="form-input">
+          </div>
+
+          <div class="form-group">
+            <label for="effectiveTaxRate">Estimated Effective Tax Rate (%)</label>
+            <input type="number" id="effectiveTaxRate" value="22" min="0" max="60" class="form-input">
+          </div>
+        </div>
+
+        <div class="card results-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-wallet"></i> Take-Home Breakdown</h3>
+            <span class="status-live"><i class="fa-solid fa-circle"></i> Live Computed</span>
+          </div>
+
+          <div class="big-metric-card teal-accent">
+            <span class="metric-label">NET TAKE-HOME INCOME (ANNUAL)</span>
+            <span id="netIncomeDisplay" class="metric-big-val text-success"><span class="curr-sym">$</span>68,940</span>
+            <span id="monthlyInHandSub" class="metric-sub">~ <span class="curr-sym">$</span>5,745 / Month In-Hand</span>
+          </div>
+
+          <div class="summary-stats-grid">
+            <div class="stat-box">
+              <span class="stat-label">Taxable Net Base</span>
+              <span id="taxableBaseDisplay" class="stat-val"><span class="curr-sym">$</span>73,000</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Estimated Tax Payable</span>
+              <span id="taxPayableDisplay" class="stat-val text-accent"><span class="curr-sym">$</span>16,060</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Trading ROI Calculator -->
+    <section id="panel-trading" class="calc-panel">
+      <div class="panel-grid">
+        <div class="card form-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-money-bill-trend-up"></i> Trading ROI &amp; Profit Estimator</h3>
+            <span class="calc-type-badge">Stocks &bull; Crypto</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="buyPrice">Buy Price (<span class="curr-sym">$</span>)</label>
+              <input type="number" id="buyPrice" value="150" min="0.001" step="0.01" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label for="sellPrice">Sell Price (<span class="curr-sym">$</span>)</label>
+              <input type="number" id="sellPrice" value="210" min="0.001" step="0.01" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="tradeQty">Quantity / Shares</label>
+              <input type="number" id="tradeQty" value="100" min="1" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label for="tradeFee">Fee / Commission (%)</label>
+              <input type="number" id="tradeFee" value="0.2" min="0" max="10" step="0.05" class="form-input">
+            </div>
+          </div>
+        </div>
+
+        <div class="card results-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-trophy"></i> Trade Return Analysis</h3>
+            <span class="status-live"><i class="fa-solid fa-circle"></i> Live Computed</span>
+          </div>
+
+          <div class="big-metric-card green-accent">
+            <span class="metric-label">NET PROFIT / LOSS</span>
+            <span id="tradingProfitDisplay" class="metric-big-val text-success"><span class="curr-sym">+$</span>5,928.00</span>
+            <span id="tradingRoiSub" class="metric-sub">+39.52% Return on Capital</span>
+          </div>
+
+          <div class="summary-stats-grid">
+            <div class="stat-box">
+              <span class="stat-label">Total Capital Invested</span>
+              <span id="tradeCapitalDisplay" class="stat-val"><span class="curr-sym">$</span>15,000</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Total Exit Value</span>
+              <span id="tradeExitDisplay" class="stat-val text-success"><span class="curr-sym">$</span>21,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehensive Financial Knowledge & Educational Guides (AdSense Compliant) -->
+    <section class="guide-section">
+      <article class="guide-article">
+        <h2>Smart Financial Planning: The Power of Compounding &amp; Early Debt Payoff</h2>
+        <p>Achieving financial independence requires understanding two fundamental financial forces: <strong>compound growth</strong> on your investments and <strong>amortization interest drag</strong> on your liabilities.</p>
+        
+        <h3>1. How Extra Mortgage Payments Save Tens of Thousands in Interest</h3>
+        <p>In standard 30-year fixed loans, the majority of your early monthly payments go directly toward interest rather than principal reduction. By adding just an extra $100 to $200 each month toward the principal, you can shave <strong>4 to 7 years</strong> off your total payoff timeline and save up to <strong>30% in cumulative interest</strong>.</p>
+
+        <h3>2. The Rule of 72 and Wealth Compounding (SIP)</h3>
+        <p>The <strong>Rule of 72</strong> is a quick formula to estimate how many years it takes for your investment to double:</p>
+        <p style="background: var(--bg-card-subtle); padding: 10px 16px; border-radius: 8px; font-family: var(--font-mono); font-weight: 700;">
+          Years to Double = 72 &divide; Annual Rate of Return (%)
+        </p>
+        <p>At a 12% annual return rate in index equity funds, your wealth doubles roughly every <strong>6 years</strong>. Starting 5 years earlier can result in more than double the final retirement corpus.</p>
+      </article>
+    </section>
+
+    <!-- Bottom Ad Slot -->
+    <div class="ad-container-wrap">
+      <div class="ad-slot-card">
+        <span class="ad-slot-tag">ADVERTISEMENT</span>
+        <div class="ad-slot-inner">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-6931746397574530"
+               data-ad-slot="9876543210"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer with Google AdSense Compliance Links -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a> &bull;
+      <a href="about.html">About Us</a> &bull;
+      <a href="privacy.html">Privacy Policy</a> &bull;
+      <a href="terms.html">Terms of Service</a> &bull;
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <p>&copy; 2026 FinCalcPro &bull; High Precision Financial Suite &bull; 100% In-Browser Privacy</p>
+  </footer>
+
+  <script src="js/finance.js"></script>
+</body>
+</html>
